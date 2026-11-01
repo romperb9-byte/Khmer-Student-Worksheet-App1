@@ -1,0 +1,19 @@
+/* Custom styles for Khmer Student Worksheet App */
+@layer base {
+  body {
+    font-family: 'Battambang', 'Khmer OS Siemreap', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Smooth scrolling and print optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
