@@ -1,7 +1,11 @@
 import { createClient, SupabaseClient, RealtimeChannel } from '@supabase/supabase-js';
 import { SubmissionResult } from '../types';
 
-// Retrieve configuration from Vite env, window, or localStorage
+// Default Supabase configuration
+const DEFAULT_SUPABASE_URL = 'https://xkugwdizbjwaiyobmkbb.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY = 'sb_publishable_miWTR6peNtTovtgtO7Klrg_bro0M7d9';
+
+// Retrieve configuration from Vite env, window, localStorage, or defaults
 export const getSupabaseConfig = () => {
     const envUrl = import.meta.env.VITE_SUPABASE_URL;
     const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -9,8 +13,8 @@ export const getSupabaseConfig = () => {
     const localKey = localStorage.getItem('supabase_anon_key');
     const windowConfig = (window as any).__supabase_config || {};
 
-    const url = envUrl || localUrl || windowConfig.url || '';
-    const anonKey = envKey || localKey || windowConfig.anonKey || '';
+    const url = envUrl || localUrl || windowConfig.url || DEFAULT_SUPABASE_URL;
+    const anonKey = envKey || localKey || windowConfig.anonKey || DEFAULT_SUPABASE_ANON_KEY;
 
     return { url: url.trim(), anonKey: anonKey.trim() };
 };
